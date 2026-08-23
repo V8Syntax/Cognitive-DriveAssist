@@ -82,11 +82,11 @@ def calculate_ear(eye_landmarks):
 # --- 4. PAGE CONFIGURATION ---
 st.set_page_config(page_title="Cognitive DriveAssist Dashboard", layout="wide")
 
-st.title("🚗 Cognitive DriveAssist Monitor")
+st.title(" Cognitive DriveAssist Monitor")
 st.markdown("Real-time facial geometry tracking and driver alertness monitoring pipeline.")
 
 # Sidebar Configuration
-st.sidebar.header("⚙️ System Configuration")
+st.sidebar.header(" System Configuration")
 ear_threshold = st.sidebar.slider("EAR Threshold", min_value=0.10, max_value=0.35, value=0.20, step=0.01)
 frames_to_wait = st.sidebar.slider("Consecutive Closed Frames Trigger", min_value=5, max_value=60, value=10, step=1)
 
@@ -104,18 +104,18 @@ if st.sidebar.button("Clear Log History"):
 col1, col2 = st.columns([3, 2])
 
 with col1:
-    st.subheader("📹 Live Driver Feed")
+    st.subheader(" Live Driver Feed")
     video_placeholder = st.empty()
 
 with col2:
-    st.subheader("📊 Live Telemetry & Alerts")
+    st.subheader(" Live Telemetry & Alerts")
     status_placeholder = st.empty()
     metric_col1, metric_col2 = st.columns(2)
     ear_metric_placeholder = metric_col1.empty()
     frame_metric_placeholder = metric_col2.empty()
     
     st.markdown("---")
-    st.subheader("📋 Recent Incident Database Logs")
+    st.subheader(" Recent Incident Database Logs")
     table_placeholder = st.empty()
 
 # --- 5. CORE EXECUTION PIPELINE ---
@@ -171,7 +171,7 @@ if run_monitoring:
                     cv2.putText(frame, "DROWSINESS DETECTED!", (30, 80),
                                 cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
                     
-                    status_placeholder.error("⚠️ CRITICAL ALERT: Driver Fatigue Detected!")
+                    status_placeholder.error(" CRITICAL ALERT: Driver Fatigue Detected!")
                     
                     # Log event to database and play sound EXACTLY ONCE per incident
                     if not alert_logged:
@@ -179,9 +179,9 @@ if run_monitoring:
                         log_event(current_ear, "Drowsiness Alert")
                         alert_logged = True
                 else:
-                    status_placeholder.success("✅ Driver State: Attentive / Active")
+                    status_placeholder.success(" Driver State: Attentive / Active")
             else:
-                status_placeholder.warning("⚠️ No Driver Face Detected")
+                status_placeholder.warning(" No Driver Face Detected")
                 closed_frames_counter = 0
 
             # Update Live Visuals
